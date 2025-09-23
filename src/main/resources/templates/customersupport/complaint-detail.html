@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Details</title>
+</head>
+<body>
+    <h1>Complaint Details</h1>
+    
+    <h2>Complaint Information</h2>
+    <table border="1">
+        <tr><td>ID:</td><td th:text="${complaint.id}"></td></tr>
+        <tr><td>Subject:</td><td th:text="${complaint.subject}"></td></tr>
+        <tr><td>Description:</td><td th:text="${complaint.description}"></td></tr>
+        <tr><td>Category:</td><td th:text="${complaint.category}"></td></tr>
+        <tr><td>Priority:</td><td th:text="${complaint.priority}"></td></tr>
+        <tr><td>Status:</td><td th:text="${complaint.status}"></td></tr>
+        <tr><td>Created Date:</td><td th:text="${complaint.createdDate}"></td></tr>
+        <tr><td>Resolution:</td><td th:text="${complaint.resolution}"></td></tr>
+    </table>
+    
+    <h2>Passenger Information</h2>
+    <table border="1" th:if="${passenger}">
+        <tr><td>Name:</td><td th:text="${passenger.firstName + ' ' + passenger.lastName}"></td></tr>
+        <tr><td>Email:</td><td th:text="${passenger.email}"></td></tr>
+        <tr><td>Phone:</td><td th:text="${passenger.phoneNumber}"></td></tr>
+    </table>
+    
+    <h2>Related Booking</h2>
+    <table border="1" th:if="${booking}">
+        <tr><td>Booking ID:</td><td th:text="${booking.id}"></td></tr>
+        <tr><td>Travel Date:</td><td th:text="${booking.travelDate}"></td></tr>
+        <tr><td>Seat Number:</td><td th:text="${booking.seatNumber}"></td></tr>
+        <tr><td>Final Amount:</td><td th:text="${booking.finalAmount}"></td></tr>
+    </table>
+    
+    <h2>Previous Responses</h2>
+    <table border="1" th:if="${responses}">
+        <tr>
+            <th>Date</th>
+            <th>Response</th>
+            <th>Internal Notes</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="response : ${responses}">
+            <td th:text="${response.createdDate}"></td>
+            <td th:text="${response.responseMessage}"></td>
+            <td th:text="${response.internalNotes}"></td>
+            <td th:text="${response.status}"></td>
+        </tr>
+    </table>
+    
+    <h2>Respond to Complaint</h2>
+    <form th:action="@{/customersupport/complaints/{id}/respond(id=${complaint.id})}" method="post">
+        <table>
+            <tr>
+                <td>Response Message:</td>
+                <td><textarea name="responseMessage" rows="4" cols="50" required></textarea></td>
+            </tr>
+            <tr>
+                <td>Internal Notes:</td>
+                <td><textarea name="internalNotes" rows="3" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td>Update Status:</td>
+                <td>
+                    <select name="status" required>
+                        <option value="PENDING">Pending</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="RESOLVED">Resolved</option>
+                        <option value="CLOSED">Closed</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Resolution (if resolved):</td>
+                <td><textarea name="resolution" rows="3" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Send Response"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/customersupport/complaints">Back to Complaints</a></p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Management</title>
+</head>
+<body>
+    <h1>Feedback Management</h1>
+    
+    <h2>Filter Feedbacks</h2>
+    <form method="get">
+        <label>Status: 
+            <select name="status">
+                <option value="">All</option>
+                <option value="PENDING">Pending</option>
+                <option value="REVIEWED">Reviewed</option>
+                <option value="RESPONDED">Responded</option>
+                <option value="CLOSED">Closed</option>
+            </select>
+        </label>
+        <label>Category: 
+            <select name="category">
+                <option value="">All</option>
+                <option value="SERVICE">Service</option>
+                <option value="BOOKING">Booking</option>
+                <option value="DRIVER">Driver</option>
+                <option value="ROUTE">Route</option>
+                <option value="OTHER">Other</option>
+            </select>
+        </label>
+        <input type="submit" value="Filter">
+    </form>
+    
+    <h2>Feedbacks List</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th>Rating</th>
+            <th>Category</th>
+            <th>Service Type</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="feedback : ${feedbacks}">
+            <td th:text="${feedback.id}"></td>
+            <td th:text="${feedback.subject}"></td>
+            <td th:text="${feedback.rating}"></td>
+            <td th:text="${feedback.category}"></td>
+            <td th:text="${feedback.serviceType}"></td>
+            <td th:text="${feedback.status}"></td>
+            <td th:text="${feedback.createdDate}"></td>
+            <td>
+                <a th:href="@{/customersupport/feedbacks/{id}(id=${feedback.id})}">View Details</a>
+            </td>
+        </tr>
+    </table>
+    
+    <p><a href="/customersupport">Back to Dashboard</a></p>
+</body>
+</html>
