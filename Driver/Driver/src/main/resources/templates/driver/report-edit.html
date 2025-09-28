@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Vehicle Report - Bus Booking System</title>
+</head>
+<body>
+    <h1>Edit Vehicle Condition Report</h1>
+    <p>Welcome, <span th:text="${userName}">Driver</span>!</p>
+    
+    <form th:action="@{'/driver/reports/edit/' + ${report.id}}" th:object="${report}" method="post">
+        <table>
+            <tr>
+                <td>Vehicle Number:</td>
+                <td><input type="text" th:field="*{vehicleNumber}" required></td>
+            </tr>
+            <tr>
+                <td>Brakes Condition:</td>
+                <td>
+                    <select th:field="*{brakesCondition}" required>
+                        <option value="">Select Condition</option>
+                        <option value="EXCELLENT">Excellent</option>
+                        <option value="GOOD">Good</option>
+                        <option value="FAIR">Fair</option>
+                        <option value="POOR">Poor</option>
+                        <option value="NEEDS_REPAIR">Needs Repair</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Lights Condition:</td>
+                <td>
+                    <select th:field="*{lightsCondition}" required>
+                        <option value="">Select Condition</option>
+                        <option value="EXCELLENT">Excellent</option>
+                        <option value="GOOD">Good</option>
+                        <option value="FAIR">Fair</option>
+                        <option value="POOR">Poor</option>
+                        <option value="NEEDS_REPAIR">Needs Repair</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Tires Condition:</td>
+                <td>
+                    <select th:field="*{tiresCondition}" required>
+                        <option value="">Select Condition</option>
+                        <option value="EXCELLENT">Excellent</option>
+                        <option value="GOOD">Good</option>
+                        <option value="FAIR">Fair</option>
+                        <option value="POOR">Poor</option>
+                        <option value="NEEDS_REPAIR">Needs Repair</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Engine Condition:</td>
+                <td>
+                    <select th:field="*{engineCondition}" required>
+                        <option value="">Select Condition</option>
+                        <option value="EXCELLENT">Excellent</option>
+                        <option value="GOOD">Good</option>
+                        <option value="FAIR">Fair</option>
+                        <option value="POOR">Poor</option>
+                        <option value="NEEDS_REPAIR">Needs Repair</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Other Issues:</td>
+                <td><textarea th:field="*{otherIssues}" rows="4" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td>Overall Status:</td>
+                <td>
+                    <select th:field="*{overallStatus}" required>
+                        <option value="">Select Status</option>
+                        <option value="ROADWORTHY">Roadworthy</option>
+                        <option value="MINOR_ISSUES">Minor Issues</option>
+                        <option value="MAJOR_ISSUES">Major Issues</option>
+                        <option value="OUT_OF_SERVICE">Out of Service</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Follow-up Notes:</td>
+                <td><textarea th:field="*{followUpNotes}" rows="4" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update Report">
+                    <a href="/driver/reports">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/driver/reports">Back to Reports</a></p>
+</body>
+</html>

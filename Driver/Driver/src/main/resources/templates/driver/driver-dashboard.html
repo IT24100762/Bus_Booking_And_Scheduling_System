@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driver Dashboard - Bus Booking System</title>
+</head>
+<body>
+    <h1>Driver Dashboard</h1>
+    <p>Welcome, <span th:text="${userName}">Driver</span>!</p>
+    
+    <h2>Driver Features</h2>
+    <ul>
+        <li><a href="/driver/triplogs">Trip Log Management</a></li>
+        <li><a href="/driver/reports">Vehicle Condition Reports</a></li>
+    </ul>
+    
+    <h2>Quick Actions</h2>
+    <ul>
+        <li><a href="/driver/triplogs/new">Log New Trip</a></li>
+        <li><a href="/driver/reports/new">Submit Vehicle Report</a></li>
+    </ul>
+    
+    <p><a href="/logout">Logout</a></p>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

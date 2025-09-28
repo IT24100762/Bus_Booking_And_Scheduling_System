@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Condition Reports - Bus Booking System</title>
+</head>
+<body>
+    <h1>Vehicle Condition Report Management</h1>
+    <p>Welcome, <span th:text="${userName}">Driver</span>!</p>
+    
+    <p><a href="/driver/reports/new">Submit New Vehicle Report</a></p>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vehicle Number</th>
+                <th>Brakes</th>
+                <th>Lights</th>
+                <th>Tires</th>
+                <th>Engine</th>
+                <th>Overall Status</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="report : ${reports}">
+                <td th:text="${report.id}"></td>
+                <td th:text="${report.vehicleNumber}"></td>
+                <td th:text="${report.brakesCondition}"></td>
+                <td th:text="${report.lightsCondition}"></td>
+                <td th:text="${report.tiresCondition}"></td>
+                <td th:text="${report.engineCondition}"></td>
+                <td th:text="${report.overallStatus}"></td>
+                <td th:text="${report.createdDate}"></td>
+                <td>
+                    <a th:href="@{'/driver/reports/edit/' + ${report.id}}">Edit</a> |
+                    <a th:href="@{'/driver/reports/delete/' + ${report.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/driver">Back to Dashboard</a></p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Logs - Bus Booking System</title>
+</head>
+<body>
+    <h1>Trip Log Management</h1>
+    <p>Welcome, <span th:text="${userName}">Driver</span>!</p>
+    
+    <p><a href="/driver/triplogs/new">Add New Trip Log</a></p>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Route ID</th>
+                <th>Schedule ID</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Passenger Count</th>
+                <th>Issues</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tripLog : ${tripLogs}">
+                <td th:text="${tripLog.id}"></td>
+                <td th:text="${tripLog.routeId}"></td>
+                <td th:text="${tripLog.scheduleId}"></td>
+                <td th:text="${tripLog.startTime}"></td>
+                <td th:text="${tripLog.endTime}"></td>
+                <td th:text="${tripLog.passengerCount}"></td>
+                <td th:text="${tripLog.issues}"></td>
+                <td th:text="${tripLog.createdDate}"></td>
+                <td>
+                    <a th:href="@{'/driver/triplogs/edit/' + ${tripLog.id}}">Edit</a> |
+                    <a th:href="@{'/driver/triplogs/delete/' + ${tripLog.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/driver">Back to Dashboard</a></p>
+</body>
+</html>

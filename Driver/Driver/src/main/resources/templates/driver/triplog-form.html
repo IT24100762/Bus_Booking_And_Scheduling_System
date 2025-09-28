@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Trip Log - Bus Booking System</title>
+</head>
+<body>
+    <h1>Add New Trip Log</h1>
+    <p>Welcome, <span th:text="${userName}">Driver</span>!</p>
+    
+    <form th:action="@{/driver/triplogs}" th:object="${tripLog}" method="post">
+        <table>
+            <tr>
+                <td>Route ID:</td>
+                <td><input type="number" th:field="*{routeId}" required></td>
+            </tr>
+            <tr>
+                <td>Schedule ID:</td>
+                <td><input type="number" th:field="*{scheduleId}" required></td>
+            </tr>
+            <tr>
+                <td>Start Time:</td>
+                <td><input type="datetime-local" th:field="*{startTime}" required></td>
+            </tr>
+            <tr>
+                <td>End Time:</td>
+                <td><input type="datetime-local" th:field="*{endTime}"></td>
+            </tr>
+            <tr>
+                <td>Passenger Count:</td>
+                <td><input type="number" th:field="*{passengerCount}" required></td>
+            </tr>
+            <tr>
+                <td>Issues:</td>
+                <td><textarea th:field="*{issues}" rows="4" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save Trip Log">
+                    <a href="/driver/triplogs">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/driver/triplogs">Back to Trip Logs</a></p>
+</body>
+</html>
