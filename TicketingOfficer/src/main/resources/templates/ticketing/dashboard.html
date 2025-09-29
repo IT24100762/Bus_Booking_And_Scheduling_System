@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticketing Officer Dashboard - Bus Booking System</title>
+</head>
+<body>
+    <h1>Ticketing Officer Dashboard</h1>
+    <p>Welcome, <span th:text="${userName}"></span>!</p>
+    
+    <h2>Dashboard Overview</h2>
+    <ul>
+        <li>Total Tickets: <span th:text="${totalTickets}"></span></li>
+        <li>Total Fare Types: <span th:text="${totalFares}"></span></li>
+    </ul>
+    
+    <h2>Ticket Management</h2>
+    <ul>
+        <li><a href="/ticketing/tickets">View All Tickets</a></li>
+        <li><a href="/ticketing/tickets/new">Create New Ticket</a></li>
+    </ul>
+    
+    <h2>Fare Management</h2>
+    <ul>
+        <li><a href="/ticketing/fares">View All Fares</a></li>
+        <li><a href="/ticketing/fares/new">Create New Fare</a></li>
+    </ul>
+    
+    <p><a href="/logout">Logout</a></p>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fare Form - Bus Booking System</title>
+</head>
+<body>
+    <h1>Fare Form</h1>
+    
+    <form th:action="@{/ticketing/fares}" th:object="${price}" method="post">
+        <input type="hidden" th:field="*{id}">
+        
+        <table>
+            <tr>
+                <td>Route ID:</td>
+                <td><input type="number" th:field="*{routeId}" required></td>
+            </tr>
+            <tr>
+                <td>Ticket Type:</td>
+                <td>
+                    <select th:field="*{ticketType}" required>
+                        <option value="">Select Type</option>
+                        <option value="REGULAR">Regular</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="SENIOR">Senior</option>
+                        <option value="SEASON">Season Pass</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Base Price:</td>
+                <td><input type="number" step="0.01" th:field="*{basePrice}" required></td>
+            </tr>
+            <tr>
+                <td>Discount Percentage:</td>
+                <td><input type="number" step="0.01" th:field="*{discountPercentage}" value="0"></td>
+            </tr>
+            <tr>
+                <td>Promotion Name:</td>
+                <td><input type="text" th:field="*{promotionName}"></td>
+            </tr>
+            <tr>
+                <td>Valid From:</td>
+                <td><input type="datetime-local" th:field="*{validFrom}" required></td>
+            </tr>
+            <tr>
+                <td>Valid To:</td>
+                <td><input type="datetime-local" th:field="*{validTo}" required></td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select th:field="*{status}" required>
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
+                        <option value="EXPIRED">Expired</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save">
+                    <a href="/ticketing/fares">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

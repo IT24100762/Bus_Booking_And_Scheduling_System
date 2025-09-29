@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Management - Bus tickets System</title>
+</head>
+<body>
+    <h1>Ticket Management</h1>
+    
+    <p><a href="/ticketing/bookings/new">Create New Ticket</a></p>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Passenger ID</th>
+                <th>Route ID</th>
+                <th>Schedule ID</th>
+                <th>Type</th>
+                <th>Fare Amount</th>
+                <th>Discount</th>
+                <th>Final Amount</th>
+                <th>Travel Date</th>
+                <th>Seat Number</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tickets : ${tickets}">
+                <td th:text="${tickets.id}"></td>
+                <td th:text="${tickets.passengerId}"></td>
+                <td th:text="${tickets.routeId}"></td>
+                <td th:text="${tickets.scheduleId}"></td>
+                <td th:text="${tickets.ticketType}"></td>
+                <td th:text="${tickets.fareAmount}"></td>
+                <td th:text="${tickets.discountApplied}"></td>
+                <td th:text="${tickets.finalAmount}"></td>
+                <td th:text="${tickets.travelDate}"></td>
+                <td th:text="${tickets.seatNumber}"></td>
+                <td th:text="${tickets.status}"></td>
+                <td>
+                    <a th:href="@{/ticketing/bookings/edit/{id}(id=${tickets.id})}">Edit</a> |
+                    <a th:href="@{/ticketing/bookings/delete/{id}(id=${tickets.id})}"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/ticketing">Back to Dashboard</a></p>
+</body>
+</html>

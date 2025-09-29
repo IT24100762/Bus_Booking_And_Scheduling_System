@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Form - Bus Booking System</title>
+</head>
+<body>
+    <h1>Ticket Form</h1>
+    
+    <form th:action="@{/ticketing/bookings}" th:object="${booking}" method="post">
+        <input type="hidden" th:field="*{id}">
+        
+        <table>
+            <tr>
+                <td>Passenger ID:</td>
+                <td><input type="number" th:field="*{passengerId}" required></td>
+            </tr>
+            <tr>
+                <td>Route ID:</td>
+                <td><input type="number" th:field="*{routeId}" required></td>
+            </tr>
+            <tr>
+                <td>Schedule ID:</td>
+                <td><input type="number" th:field="*{scheduleId}" required></td>
+            </tr>
+            <tr>
+                <td>Ticket Type:</td>
+                <td>
+                    <select th:field="*{ticketType}" required>
+                        <option value="">Select Type</option>
+                        <option value="REGULAR">Regular</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="SENIOR">Senior</option>
+                        <option value="SEASON">Season Pass</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Fare Amount:</td>
+                <td><input type="number" step="0.01" th:field="*{fareAmount}" required></td>
+            </tr>
+            <tr>
+                <td>Discount Applied:</td>
+                <td><input type="number" step="0.01" th:field="*{discountApplied}" value="0"></td>
+            </tr>
+            <tr>
+                <td>Final Amount:</td>
+                <td><input type="number" step="0.01" th:field="*{finalAmount}" required></td>
+            </tr>
+            <tr>
+                <td>Travel Date:</td>
+                <td><input type="datetime-local" th:field="*{travelDate}" required></td>
+            </tr>
+            <tr>
+                <td>Seat Number:</td>
+                <td><input type="text" th:field="*{seatNumber}" required></td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select th:field="*{status}" required>
+                        <option value="BOOKED">Booked</option>
+                        <option value="CANCELLED">Cancelled</option>
+                        <option value="REFUNDED">Refunded</option>
+                        <option value="USED">Used</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save">
+                    <a href="/ticketing/bookings">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

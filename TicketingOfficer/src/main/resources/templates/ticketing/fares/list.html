@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fare Management - Bus Booking System</title>
+</head>
+<body>
+    <h1>Fare Management</h1>
+    
+    <p><a href="/ticketing/fares/new">Create New Fare</a></p>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Route ID</th>
+                <th>Ticket Type</th>
+                <th>Base Price</th>
+                <th>Discount %</th>
+                <th>Promotion Name</th>
+                <th>Valid From</th>
+                <th>Valid To</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="price : ${fares}">
+                <td th:text="${price.id}"></td>
+                <td th:text="${price.routeId}"></td>
+                <td th:text="${price.ticketType}"></td>
+                <td th:text="${price.basePrice}"></td>
+                <td th:text="${price.discountPercentage}"></td>
+                <td th:text="${price.promotionName}"></td>
+                <td th:text="${price.validFrom}"></td>
+                <td th:text="${price.validTo}"></td>
+                <td th:text="${price.status}"></td>
+                <td>
+                    <a th:href="@{/ticketing/fares/edit/{id}(id=${price.id})}">Edit</a> |
+                    <a th:href="@{/ticketing/fares/delete/{id}(id=${price.id})}"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/ticketing">Back to Dashboard</a></p>
+</body>
+</html>
