@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Backup Configuration</title>
+</head>
+<body>
+    <h1>Backup Configuration Details</h1>
+    
+    <table border="1">
+        <tr>
+            <td>ID:</td>
+            <td th:text="${backup.id}"></td>
+        </tr>
+        <tr>
+            <td>Backup Name:</td>
+            <td th:text="${backup.backupName}"></td>
+        </tr>
+        <tr>
+            <td>Backup Type:</td>
+            <td th:text="${backup.backupType}"></td>
+        </tr>
+        <tr>
+            <td>Schedule:</td>
+            <td th:text="${backup.schedule}"></td>
+        </tr>
+        <tr>
+            <td>Retention Policy:</td>
+            <td th:text="${backup.retentionPolicy}"></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td th:text="${backup.status}"></td>
+        </tr>
+        <tr>
+            <td>Created Date:</td>
+            <td th:text="${backup.createdDate}"></td>
+        </tr>
+        <tr>
+            <td>Last Backup Date:</td>
+            <td th:text="${backup.lastBackupDate}"></td>
+        </tr>
+    </table>
+    
+    <p>
+        <a th:href="@{/itsupport/backups/edit/{id}(id=${backup.id})}">Edit Configuration</a> |
+        <a href="/itsupport/backups">Back to Backup List</a>
+    </p>
+</body>
+</html>

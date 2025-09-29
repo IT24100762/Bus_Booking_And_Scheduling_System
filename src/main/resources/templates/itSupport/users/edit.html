@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User</h1>
+    
+    <form action="/itsupport/users/edit/${user.id}" method="post" th:action="@{/itsupport/users/edit/{id}(id=${user.id})}">
+        <table>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" th:value="${user.email}" required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" th:value="${user.password}" required></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstName" th:value="${user.firstName}" required></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastName" th:value="${user.lastName}" required></td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td>
+                    <select name="role" required>
+                        <option value="IT_SUPPORT" th:selected="${user.role == 'IT_SUPPORT'}">IT Support</option>
+                        <option value="OPERATION_MANAGER" th:selected="${user.role == 'OPERATION_MANAGER'}">Operation Manager</option>
+                        <option value="CUSTOMER_SUPPORT" th:selected="${user.role == 'CUSTOMER_SUPPORT'}">Customer Support Officer</option>
+                        <option value="TICKETING_OFFICER" th:selected="${user.role == 'TICKETING_OFFICER'}">Ticketing Officer</option>
+                        <option value="DRIVER" th:selected="${user.role == 'DRIVER'}">Driver</option>
+                        <option value="PASSENGER" th:selected="${user.role == 'PASSENGER'}">Passenger</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select name="status" required>
+                        <option value="ACTIVE" th:selected="${user.status == 'ACTIVE'}">Active</option>
+                        <option value="INACTIVE" th:selected="${user.status == 'INACTIVE'}">Inactive</option>
+                        <option value="SUSPENDED" th:selected="${user.status == 'SUSPENDED'}">Suspended</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" name="phoneNumber" th:value="${user.phoneNumber}" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update User">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/itsupport/users">Back to Users List</a></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IT Support Dashboard</title>
+</head>
+<body>
+    <h1>IT Support Dashboard</h1>
+    
+    <p>Welcome to IT Support Officer Panel</p>
+    
+    <h2>Quick Actions</h2>
+    <ul>
+        <li><a href="/itsupport/users">User Access & Role Management</a></li>
+        <li><a href="/itsupport/backups">Backup & Restore Management</a></li>
+    </ul>
+    
+    <h2>User Management</h2>
+    <ul>
+        <li><a href="/itsupport/users/create">Add New User</a></li>
+        <li><a href="/itsupport/users">View All Users</a></li>
+        <li><a href="/itsupport/users?role=DRIVER">Manage Drivers</a></li>
+        <li><a href="/itsupport/users?role=TICKETING_OFFICER">Manage Ticketing Officers</a></li>
+    </ul>
+    
+    <h2>Backup Management</h2>
+    <ul>
+        <li><a href="/itsupport/backups/create">Create Backup Configuration</a></li>
+        <li><a href="/itsupport/backups">View Backup History</a></li>
+        <li><a href="/itsupport/backups?status=ACTIVE">Active Backups</a></li>
+    </ul>
+    
+    <p><a href="/logout">Logout</a> | <a href="/">Home</a></p>
+</body>
+</html>

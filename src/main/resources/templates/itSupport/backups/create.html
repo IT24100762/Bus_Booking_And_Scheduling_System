@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Backup Configuration</title>
+</head>
+<body>
+    <h1>Create New Backup Configuration</h1>
+    
+    <form action="/itsupport/backups/create" method="post">
+        <table>
+            <tr>
+                <td>Backup Name:</td>
+                <td><input type="text" name="backupName" required></td>
+            </tr>
+            <tr>
+                <td>Backup Type:</td>
+                <td>
+                    <select name="backupType" required>
+                        <option value="">Select Type</option>
+                        <option value="FULL">Full Backup</option>
+                        <option value="INCREMENTAL">Incremental Backup</option>
+                        <option value="DIFFERENTIAL">Differential Backup</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Schedule:</td>
+                <td>
+                    <select name="schedule" required>
+                        <option value="">Select Schedule</option>
+                        <option value="DAILY">Daily</option>
+                        <option value="WEEKLY">Weekly</option>
+                        <option value="MONTHLY">Monthly</option>
+                        <option value="MANUAL">Manual</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Retention Policy:</td>
+                <td>
+                    <select name="retentionPolicy" required>
+                        <option value="">Select Retention</option>
+                        <option value="7_DAYS">7 Days</option>
+                        <option value="30_DAYS">30 Days</option>
+                        <option value="90_DAYS">90 Days</option>
+                        <option value="1_YEAR">1 Year</option>
+                        <option value="PERMANENT">Permanent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select name="status" required>
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
+                        <option value="PENDING">Pending</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create Backup Configuration">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/itsupport/backups">Back to Backup List</a></p>
+</body>
+</html>

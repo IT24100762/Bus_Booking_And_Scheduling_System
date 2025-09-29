@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+</head>
+<body>
+    <h1>User Management</h1>
+    
+    <p><a href="/itsupport/users/create">Add New User</a></p>
+    
+    <h2>Filter Users</h2>
+    <form action="/itsupport/users" method="get">
+        <select name="role">
+            <option value="">All Roles</option>
+            <option value="IT_SUPPORT">IT Support</option>
+            <option value="OPERATION_MANAGER">Operation Manager</option>
+            <option value="CUSTOMER_SUPPORT">Customer Support</option>
+            <option value="TICKETING_OFFICER">Ticketing Officer</option>
+            <option value="DRIVER">Driver</option>
+            <option value="PASSENGER">Passenger</option>
+        </select>
+        <input type="submit" value="Filter by Role">
+    </form>
+    
+    <form action="/itsupport/users" method="get">
+        <select name="status">
+            <option value="">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+            <option value="SUSPENDED">Suspended</option>
+        </select>
+        <input type="submit" value="Filter by Status">
+    </form>
+    
+    <h2>Users List</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+            <td th:text="${user.role}"></td>
+            <td th:text="${user.status}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td>
+                <a th:href="@{/itsupport/users/view/{id}(id=${user.id})}">View</a> |
+                <a th:href="@{/itsupport/users/edit/{id}(id=${user.id})}">Edit</a> |
+                <a th:href="@{/itsupport/users/delete/{id}(id=${user.id})}" 
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+    
+    <p><a href="/itsupport">Back to Dashboard</a> | <a href="/logout">Logout</a></p>
+</body>
+</html>

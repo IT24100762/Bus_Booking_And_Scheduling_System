@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backup Management</title>
+</head>
+<body>
+    <h1>Backup & Restore Management</h1>
+    
+    <p><a href="/itsupport/backups/create">Create New Backup Configuration</a></p>
+    
+    <h2>Filter Backups</h2>
+    <form action="/itsupport/backups" method="get">
+        <select name="status">
+            <option value="">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+            <option value="PENDING">Pending</option>
+            <option value="FAILED">Failed</option>
+        </select>
+        <input type="submit" value="Filter by Status">
+    </form>
+    
+    <form action="/itsupport/backups" method="get">
+        <select name="type">
+            <option value="">All Types</option>
+            <option value="FULL">Full Backup</option>
+            <option value="INCREMENTAL">Incremental</option>
+            <option value="DIFFERENTIAL">Differential</option>
+        </select>
+        <input type="submit" value="Filter by Type">
+    </form>
+    
+    <h2>Backup Configurations</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Backup Name</th>
+            <th>Type</th>
+            <th>Schedule</th>
+            <th>Retention Policy</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Last Backup</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="backup : ${backups}">
+            <td th:text="${backup.id}"></td>
+            <td th:text="${backup.backupName}"></td>
+            <td th:text="${backup.backupType}"></td>
+            <td th:text="${backup.schedule}"></td>
+            <td th:text="${backup.retentionPolicy}"></td>
+            <td th:text="${backup.status}"></td>
+            <td th:text="${backup.createdDate}"></td>
+            <td th:text="${backup.lastBackupDate}"></td>
+            <td>
+                <a th:href="@{/itsupport/backups/view/{id}(id=${backup.id})}">View</a> |
+                <a th:href="@{/itsupport/backups/edit/{id}(id=${backup.id})}">Edit</a> |
+                <a th:href="@{/itsupport/backups/delete/{id}(id=${backup.id})}" 
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+    
+    <p><a href="/itsupport">Back to Dashboard</a> | <a href="/logout">Logout</a></p>
+</body>
+</html>

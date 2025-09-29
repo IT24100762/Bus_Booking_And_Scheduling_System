@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Backup Configuration</title>
+</head>
+<body>
+    <h1>Edit Backup Configuration</h1>
+    
+    <form action="/itsupport/backups/edit/${backup.id}" method="post" th:action="@{/itsupport/backups/edit/{id}(id=${backup.id})}">
+        <table>
+            <tr>
+                <td>Backup Name:</td>
+                <td><input type="text" name="backupName" th:value="${backup.backupName}" required></td>
+            </tr>
+            <tr>
+                <td>Backup Type:</td>
+                <td>
+                    <select name="backupType" required>
+                        <option value="FULL" th:selected="${backup.backupType == 'FULL'}">Full Backup</option>
+                        <option value="INCREMENTAL" th:selected="${backup.backupType == 'INCREMENTAL'}">Incremental Backup</option>
+                        <option value="DIFFERENTIAL" th:selected="${backup.backupType == 'DIFFERENTIAL'}">Differential Backup</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Schedule:</td>
+                <td>
+                    <select name="schedule" required>
+                        <option value="DAILY" th:selected="${backup.schedule == 'DAILY'}">Daily</option>
+                        <option value="WEEKLY" th:selected="${backup.schedule == 'WEEKLY'}">Weekly</option>
+                        <option value="MONTHLY" th:selected="${backup.schedule == 'MONTHLY'}">Monthly</option>
+                        <option value="MANUAL" th:selected="${backup.schedule == 'MANUAL'}">Manual</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Retention Policy:</td>
+                <td>
+                    <select name="retentionPolicy" required>
+                        <option value="7_DAYS" th:selected="${backup.retentionPolicy == '7_DAYS'}">7 Days</option>
+                        <option value="30_DAYS" th:selected="${backup.retentionPolicy == '30_DAYS'}">30 Days</option>
+                        <option value="90_DAYS" th:selected="${backup.retentionPolicy == '90_DAYS'}">90 Days</option>
+                        <option value="1_YEAR" th:selected="${backup.retentionPolicy == '1_YEAR'}">1 Year</option>
+                        <option value="PERMANENT" th:selected="${backup.retentionPolicy == 'PERMANENT'}">Permanent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select name="status" required>
+                        <option value="ACTIVE" th:selected="${backup.status == 'ACTIVE'}">Active</option>
+                        <option value="INACTIVE" th:selected="${backup.status == 'INACTIVE'}">Inactive</option>
+                        <option value="PENDING" th:selected="${backup.status == 'PENDING'}">Pending</option>
+                        <option value="FAILED" th:selected="${backup.status == 'FAILED'}">Failed</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update Backup Configuration">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/itsupport/backups">Back to Backup List</a></p>
+</body>
+</html>

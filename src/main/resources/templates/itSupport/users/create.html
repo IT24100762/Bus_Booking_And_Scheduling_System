@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create User</title>
+</head>
+<body>
+    <h1>Create New User</h1>
+    
+    <form action="/itsupport/users/create" method="post">
+        <table>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstName" required></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastName" required></td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td>
+                    <select name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="OPERATION_MANAGER">Operation Manager</option>
+                        <option value="CUSTOMER_SUPPORT">Customer Support Officer</option>
+                        <option value="TICKETING_OFFICER">Ticketing Officer</option>
+                        <option value="DRIVER">Driver</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select name="status" required>
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
+                        <option value="SUSPENDED">Suspended</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" name="phoneNumber" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create User">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/itsupport/users">Back to Users List</a></p>
+</body>
+</html>
