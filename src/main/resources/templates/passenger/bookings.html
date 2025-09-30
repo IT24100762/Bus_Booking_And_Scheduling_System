@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings - Bus Booking System</title>
+</head>
+<body>
+    <h1>My Bookings</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/bookings/new">Book New Ticket</a></li>
+            <li><a href="/passenger/routes">Search Routes</a></li>
+            <li><a href="/passenger/profile">My Profile</a></li>
+        </ul>
+    </nav>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Travel Date</th>
+                <th>Seat Number</th>
+                <th>Ticket Type</th>
+                <th>Fare Amount</th>
+                <th>Discount Applied</th>
+                <th>Final Amount</th>
+                <th>Status</th>
+                <th>Special Requests</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.id}"></td>
+                <td th:text="${booking.travelDate}"></td>
+                <td th:text="${booking.seatNumber}"></td>
+                <td th:text="${booking.ticketType}"></td>
+                <td th:text="${booking.fareAmount}"></td>
+                <td th:text="${booking.discountApplied}"></td>
+                <td th:text="${booking.finalAmount}"></td>
+                <td th:text="${booking.status}"></td>
+                <td th:text="${booking.specialRequests}"></td>
+                <td>
+                    <a th:if="${booking.status == 'BOOKED'}" th:href="@{/passenger/bookings/{id}/edit(id=${booking.id})}">Edit</a>
+                    <form th:if="${booking.status == 'BOOKED'}" th:action="@{/passenger/bookings/{id}/cancel(id=${booking.id})}" method="post" style="display: inline;">
+                        <input type="submit" value="Cancel" onclick="return confirm('Are you sure you want to cancel this booking?');">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/passenger/bookings/new">Book New Ticket</a></p>
+</body>
+</html>

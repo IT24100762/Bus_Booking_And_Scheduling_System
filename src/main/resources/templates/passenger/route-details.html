@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Route Details - Bus Booking System</title>
+</head>
+<body>
+    <h1>Route Details</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/routes">Back to Routes</a></li>
+            <li><a href="/passenger/bookings/new">Book Ticket</a></li>
+        </ul>
+    </nav>
+    
+    <h2>Route Information</h2>
+    <table border="1">
+        <tr>
+            <td>Route ID:</td>
+            <td th:text="${route.id}"></td>
+        </tr>
+        <tr>
+            <td>Origin:</td>
+            <td th:text="${route.origin}"></td>
+        </tr>
+        <tr>
+            <td>Destination:</td>
+            <td th:text="${route.destination}"></td>
+        </tr>
+        <tr>
+            <td>Stops:</td>
+            <td th:text="${route.stops}"></td>
+        </tr>
+        <tr>
+            <td>Distance:</td>
+            <td th:text="${route.distance + ' km'}"></td>
+        </tr>
+        <tr>
+            <td>Duration:</td>
+            <td th:text="${route.duration + ' minutes'}"></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td th:text="${route.status}"></td>
+        </tr>
+    </table>
+    
+    <h2>Available Schedules</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Schedule ID</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="schedule : ${schedules}">
+                <td th:text="${schedule.id}"></td>
+                <td th:text="${schedule.departureTime}"></td>
+                <td th:text="${schedule.arrivalTime}"></td>
+                <td th:text="${schedule.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Fare Information</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Ticket Type</th>
+                <th>Base Price</th>
+                <th>Discount %</th>
+                <th>Promotion Name</th>
+                <th>Valid From</th>
+                <th>Valid To</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="fare : ${fares}">
+                <td th:text="${fare.ticketType}"></td>
+                <td th:text="${fare.basePrice}"></td>
+                <td th:text="${fare.discountPercentage}"></td>
+                <td th:text="${fare.promotionName}"></td>
+                <td th:text="${fare.validFrom}"></td>
+                <td th:text="${fare.validTo}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/passenger/bookings/new">Book This Route</a></p>
+</body>
+</html>

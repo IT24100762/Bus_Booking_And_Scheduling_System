@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Complaint - Bus Booking System</title>
+</head>
+<body>
+    <h1>Edit Complaint</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/complaints">My Complaints</a></li>
+        </ul>
+    </nav>
+    
+    <form th:action="@{/passenger/complaints/{id}(id=${complaint.id})}" method="post">
+        <table>
+            <tr>
+                <td>Related Ticket:</td>
+                <td>
+                    <select name="ticketId">
+                        <option value="">Select a ticket (optional)</option>
+                        <option th:each="ticket : ${tickets}" th:value="${ticket.id}" 
+                                th:selected="${ticket.id == complaint.ticketId}"
+                                th:text="${'Ticket #' + ticket.id + ' - ' + ticket.travelDate + ' - Seat ' + ticket.seatNumber}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td><input type="text" name="subject" th:value="${complaint.subject}" required></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="SERVICE" th:selected="${complaint.category == 'SERVICE'}">Service Quality</option>
+                        <option value="BOOKING" th:selected="${complaint.category == 'BOOKING'}">Booking Issues</option>
+                        <option value="PAYMENT" th:selected="${complaint.category == 'PAYMENT'}">Payment Issues</option>
+                        <option value="DRIVER" th:selected="${complaint.category == 'DRIVER'}">Driver Behavior</option>
+                        <option value="VEHICLE" th:selected="${complaint.category == 'VEHICLE'}">Vehicle Condition</option>
+                        <option value="SCHEDULE" th:selected="${complaint.category == 'SCHEDULE'}">Schedule Problems</option>
+                        <option value="OTHER" th:selected="${complaint.category == 'OTHER'}">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Priority:</td>
+                <td>
+                    <select name="priority" required>
+                        <option value="">Select Priority</option>
+                        <option value="LOW" th:selected="${complaint.priority == 'LOW'}">Low</option>
+                        <option value="MEDIUM" th:selected="${complaint.priority == 'MEDIUM'}">Medium</option>
+                        <option value="HIGH" th:selected="${complaint.priority == 'HIGH'}">High</option>
+                        <option value="URGENT" th:selected="${complaint.priority == 'URGENT'}">Urgent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><textarea name="description" rows="5" cols="50" required th:text="${complaint.description}"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Complaint"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/passenger/complaints">Back to Complaints</a></p>
+</body>
+</html>

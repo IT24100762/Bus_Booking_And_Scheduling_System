@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book New Ticket - Bus Booking System</title>
+</head>
+<body>
+    <h1>Book New Ticket</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+            <li><a href="/passenger/routes">Search Routes</a></li>
+        </ul>
+    </nav>
+    
+    <form action="/passenger/bookings" method="post">
+        <table>
+            <tr>
+                <td>Route:</td>
+                <td>
+                    <select name="routeId" id="routeSelect" required onchange="loadSchedules()">
+                        <option value="">Select Route</option>
+                        <option th:each="route : ${routes}" th:value="${route.id}" 
+                                th:text="${route.origin + ' to ' + route.destination + ' (Distance: ' + route.distance + 'km)'}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Schedule:</td>
+                <td>
+                    <select name="scheduleId" id="scheduleSelect" required>
+                        <option value="">Select Schedule</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Ticket Type:</td>
+                <td>
+                    <select name="ticketType" required>
+                        <option value="">Select Type</option>
+                        <option value="REGULAR">Regular</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="SENIOR">Senior</option>
+                        <option value="SEASON">Season Pass</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Travel Date:</td>
+                <td><input type="datetime-local" name="travelDate" required></td>
+            </tr>
+            <tr>
+                <td>Seat Number:</td>
+                <td><input type="text" name="seatNumber" required placeholder="e.g., A01"></td>
+            </tr>
+            <tr>
+                <td>Special Requests:</td>
+                <td><textarea name="specialRequests" rows="3" cols="30"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Book Ticket"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    
+    <script>
+        function loadSchedules() {
+            var routeId = document.getElementById('routeSelect').value;
+            var scheduleSelect = document.getElementById('scheduleSelect');
+            
+            scheduleSelect.innerHTML = '<option value="">Select Schedule</option>';
+            
+            if (routeId) {
+                fetch('/passenger/routes/' + routeId + '/schedules')
+                    .then(response => response.json())
+                    .then(schedules => {
+                        schedules.forEach(schedule => {
+                            var option = document.createElement('option');
+                            option.value = schedule.id;
+                            option.text = 'Departure: ' + schedule.departureTime + ' - Arrival: ' + schedule.arrivalTime;
+                            scheduleSelect.appendChild(option);
+                        });
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Feedback - Bus Booking System</title>
+</head>
+<body>
+    <h1>Submit New Feedback</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/feedbacks">My Feedbacks</a></li>
+        </ul>
+    </nav>
+    
+    <form th:action="@{/passenger/feedbacks}" method="post">
+        <table>
+            <tr>
+                <td>Rating:</td>
+                <td>
+                    <select name="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="1">1 - Very Poor</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td><input type="text" name="subject" required></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="SERVICE">Service Quality</option>
+                        <option value="BOOKING">Booking Experience</option>
+                        <option value="DRIVER">Driver Performance</option>
+                        <option value="VEHICLE">Vehicle Condition</option>
+                        <option value="PUNCTUALITY">Punctuality</option>
+                        <option value="STAFF">Staff Behavior</option>
+                        <option value="OVERALL">Overall Experience</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Service Type:</td>
+                <td>
+                    <select name="serviceType" required>
+                        <option value="">Select Service Type</option>
+                        <option value="REGULAR">Regular Service</option>
+                        <option value="EXPRESS">Express Service</option>
+                        <option value="LUXURY">Luxury Service</option>
+                        <option value="NIGHT">Night Service</option>
+                        <option value="INTERCITY">Intercity Service</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Message:</td>
+                <td><textarea name="message" rows="5" cols="50" required></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit Feedback"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/passenger/feedbacks">Back to Feedbacks</a></p>
+</body>
+</html>

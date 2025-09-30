@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Complaints - Bus Booking System</title>
+</head>
+<body>
+    <h1>My Complaints</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/complaints/new">Submit New Complaint</a></li>
+            <li><a href="/passenger/feedbacks">My Feedbacks</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+        </ul>
+    </nav>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="complaint : ${complaints}">
+                <td th:text="${complaint.id}"></td>
+                <td th:text="${complaint.subject}"></td>
+                <td th:text="${complaint.category}"></td>
+                <td th:text="${complaint.priority}"></td>
+                <td th:text="${complaint.status}"></td>
+                <td th:text="${complaint.createdDate}"></td>
+                <td>
+                    <a th:if="${complaint.status == 'PENDING'}" th:href="@{/passenger/complaints/{id}/edit(id=${complaint.id})}">Edit</a>
+                    <form th:if="${complaint.status == 'PENDING'}" th:action="@{/passenger/complaints/{id}/delete(id=${complaint.id})}" method="post" style="display: inline;">
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this complaint?');">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/passenger/complaints/new">Submit New Complaint</a></p>
+</body>
+</html>

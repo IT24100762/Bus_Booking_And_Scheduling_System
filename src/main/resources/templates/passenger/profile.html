@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - Bus Booking System</title>
+</head>
+<body>
+    <h1>My Profile</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+            <li><a href="/passenger/profile/edit">Edit Profile</a></li>
+        </ul>
+    </nav>
+    
+    <h2>Personal Information</h2>
+    <table border="1">
+        <tr>
+            <td>Name:</td>
+            <td th:text="${user != null ? user.firstName + ' ' + user.lastName : 'N/A'}"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${user != null ? user.email : 'N/A'}"></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td th:text="${user != null ? user.phoneNumber : 'N/A'}"></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td th:text="${user != null ? user.status : 'N/A'}"></td>
+        </tr>
+    </table>
+    
+    <h2>Travel Preferences</h2>
+    <table border="1" th:if="${profile != null}">
+        <tr>
+            <td>Preferred Seat Type:</td>
+            <td th:text="${profile.preferredSeatType}"></td>
+        </tr>
+        <tr>
+            <td>Frequent Destinations:</td>
+            <td th:text="${profile.frequentDestinations}"></td>
+        </tr>
+        <tr>
+            <td>Payment Methods:</td>
+            <td th:text="${profile.paymentMethods}"></td>
+        </tr>
+        <tr>
+            <td>Accessibility Needs:</td>
+            <td th:text="${profile.accessibilityNeeds}"></td>
+        </tr>
+        <tr>
+            <td>Travel Preferences:</td>
+            <td th:text="${profile.travelPreferences}"></td>
+        </tr>
+        <tr>
+            <td>Emergency Contact:</td>
+            <td th:text="${profile.emergencyContactName + ' - ' + profile.emergencyContactPhone}"></td>
+        </tr>
+    </table>
+    
+    <div th:if="${profile == null}">
+        <p>No profile information available. <a href="/passenger/profile/edit">Create Profile</a></p>
+    </div>
+    
+    <p><a href="/passenger/profile/edit">Edit Profile</a></p>
+</body>
+</html>

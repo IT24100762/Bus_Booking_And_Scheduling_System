@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Booking - Bus Booking System</title>
+</head>
+<body>
+    <h1>Edit Booking</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+        </ul>
+    </nav>
+    
+    <form th:action="@{/passenger/bookings/{id}(id=${booking.id})}" method="post">
+        <table>
+            <tr>
+                <td>Booking ID:</td>
+                <td th:text="${booking.id}"></td>
+            </tr>
+            <tr>
+                <td>Current Travel Date:</td>
+                <td><input type="datetime-local" name="travelDate" th:value="${booking.travelDate}" required></td>
+            </tr>
+            <tr>
+                <td>Seat Number:</td>
+                <td><input type="text" name="seatNumber" th:value="${booking.seatNumber}" required></td>
+            </tr>
+            <tr>
+                <td>Special Requests:</td>
+                <td><textarea name="specialRequests" rows="3" cols="30" th:text="${booking.specialRequests}"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Booking"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/passenger/bookings">Back to Bookings</a></p>
+</body>
+</html>

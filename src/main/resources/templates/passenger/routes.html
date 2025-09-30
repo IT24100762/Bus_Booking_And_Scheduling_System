@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Routes - Bus Booking System</title>
+</head>
+<body>
+    <h1>Search Routes</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+            <li><a href="/passenger/bookings/new">Book New Ticket</a></li>
+        </ul>
+    </nav>
+    
+    <form action="/passenger/routes" method="get">
+        <table>
+            <tr>
+                <td>Search Routes:</td>
+                <td><input type="text" name="search" th:value="${search}" placeholder="Enter origin or destination"></td>
+                <td><input type="submit" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <h2>Available Routes</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Route ID</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Stops</th>
+                <th>Distance (km)</th>
+                <th>Duration (min)</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="route : ${routes}">
+                <td th:text="${route.id}"></td>
+                <td th:text="${route.origin}"></td>
+                <td th:text="${route.destination}"></td>
+                <td th:text="${route.stops}"></td>
+                <td th:text="${route.distance}"></td>
+                <td th:text="${route.duration}"></td>
+                <td th:text="${route.status}"></td>
+                <td>
+                    <a th:href="@{/passenger/routes/{id}/details(id=${route.id})}">View Details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/passenger/bookings/new">Book a Ticket</a></p>
+</body>
+</html>

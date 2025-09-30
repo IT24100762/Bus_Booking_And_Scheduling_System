@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passenger Dashboard - Bus Booking System</title>
+</head>
+<body>
+    <h1>Welcome, <span th:text="${userName}"></span></h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+            <li><a href="/passenger/bookings/new">Book New Ticket</a></li>
+            <li><a href="/passenger/routes">Search Routes</a></li>
+            <li><a href="/passenger/profile">My Profile</a></li>
+            <li><a href="/passenger/complaints">My Complaints</a></li>
+            <li><a href="/passenger/feedbacks">My Feedbacks</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <h2>Recent Bookings</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Travel Date</th>
+                <th>Seat Number</th>
+                <th>Final Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.id}"></td>
+                <td th:text="${booking.travelDate}"></td>
+                <td th:text="${booking.seatNumber}"></td>
+                <td th:text="${booking.finalAmount}"></td>
+                <td th:text="${booking.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

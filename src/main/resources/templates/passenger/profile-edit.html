@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile - Bus Booking System</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/profile">My Profile</a></li>
+        </ul>
+    </nav>
+    
+    <form action="/passenger/profile" method="post">
+        <h2>Personal Information</h2>
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstName" th:value="${user != null ? user.firstName : ''}" required></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastName" th:value="${user != null ? user.lastName : ''}" required></td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" name="phoneNumber" th:value="${user != null ? user.phoneNumber : ''}" required></td>
+            </tr>
+        </table>
+        
+        <h2>Travel Preferences</h2>
+        <table>
+            <tr>
+                <td>Preferred Seat Type:</td>
+                <td>
+                    <select name="preferredSeatType">
+                        <option value="">Select Type</option>
+                        <option value="WINDOW" th:selected="${profile != null && profile.preferredSeatType == 'WINDOW'}">Window</option>
+                        <option value="AISLE" th:selected="${profile != null && profile.preferredSeatType == 'AISLE'}">Aisle</option>
+                        <option value="FRONT" th:selected="${profile != null && profile.preferredSeatType == 'FRONT'}">Front</option>
+                        <option value="BACK" th:selected="${profile != null && profile.preferredSeatType == 'BACK'}">Back</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Frequent Destinations:</td>
+                <td><input type="text" name="frequentDestinations" th:value="${profile != null ? profile.frequentDestinations : ''}" placeholder="e.g., Colombo, Kandy"></td>
+            </tr>
+            <tr>
+                <td>Payment Methods:</td>
+                <td><input type="text" name="paymentMethods" th:value="${profile != null ? profile.paymentMethods : ''}" placeholder="e.g., Credit Card, Cash"></td>
+            </tr>
+            <tr>
+                <td>Accessibility Needs:</td>
+                <td><textarea name="accessibilityNeeds" rows="3" cols="30" th:text="${profile != null ? profile.accessibilityNeeds : ''}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Travel Preferences:</td>
+                <td><textarea name="travelPreferences" rows="3" cols="30" th:text="${profile != null ? profile.travelPreferences : ''}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Emergency Contact Name:</td>
+                <td><input type="text" name="emergencyContactName" th:value="${profile != null ? profile.emergencyContactName : ''}"></td>
+            </tr>
+            <tr>
+                <td>Emergency Contact Phone:</td>
+                <td><input type="text" name="emergencyContactPhone" th:value="${profile != null ? profile.emergencyContactPhone : ''}"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Profile"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/passenger/profile">Back to Profile</a></p>
+</body>
+</html>

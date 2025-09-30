@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Feedbacks - Bus Booking System</title>
+</head>
+<body>
+    <h1>My Feedbacks</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/feedbacks/new">Submit New Feedback</a></li>
+            <li><a href="/passenger/complaints">My Complaints</a></li>
+            <li><a href="/passenger/bookings">My Bookings</a></li>
+        </ul>
+    </nav>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Rating</th>
+                <th>Category</th>
+                <th>Service Type</th>
+                <th>Status</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="feedback : ${feedbacks}">
+                <td th:text="${feedback.id}"></td>
+                <td th:text="${feedback.subject}"></td>
+                <td th:text="${feedback.rating}"></td>
+                <td th:text="${feedback.category}"></td>
+                <td th:text="${feedback.serviceType}"></td>
+                <td th:text="${feedback.status}"></td>
+                <td th:text="${feedback.createdDate}"></td>
+                <td>
+                    <a th:if="${feedback.status == 'PENDING'}" th:href="@{/passenger/feedbacks/{id}/edit(id=${feedback.id})}">Edit</a>
+                    <form th:if="${feedback.status == 'PENDING'}" th:action="@{/passenger/feedbacks/{id}/delete(id=${feedback.id})}" method="post" style="display: inline;">
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this feedback?');">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/passenger/feedbacks/new">Submit New Feedback</a></p>
+</body>
+</html>

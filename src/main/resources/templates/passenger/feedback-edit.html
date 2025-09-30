@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Feedback - Bus Booking System</title>
+</head>
+<body>
+    <h1>Edit Feedback</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="/passenger">Dashboard</a></li>
+            <li><a href="/passenger/feedbacks">My Feedbacks</a></li>
+        </ul>
+    </nav>
+    
+    <form th:action="@{/passenger/feedbacks/{id}(id=${feedback.id})}" method="post">
+        <table>
+            <tr>
+                <td>Rating:</td>
+                <td>
+                    <select name="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="1" th:selected="${feedback.rating == 1}">1 - Very Poor</option>
+                        <option value="2" th:selected="${feedback.rating == 2}">2 - Poor</option>
+                        <option value="3" th:selected="${feedback.rating == 3}">3 - Average</option>
+                        <option value="4" th:selected="${feedback.rating == 4}">4 - Good</option>
+                        <option value="5" th:selected="${feedback.rating == 5}">5 - Excellent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td><input type="text" name="subject" th:value="${feedback.subject}" required></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="SERVICE" th:selected="${feedback.category == 'SERVICE'}">Service Quality</option>
+                        <option value="BOOKING" th:selected="${feedback.category == 'BOOKING'}">Booking Experience</option>
+                        <option value="DRIVER" th:selected="${feedback.category == 'DRIVER'}">Driver Performance</option>
+                        <option value="VEHICLE" th:selected="${feedback.category == 'VEHICLE'}">Vehicle Condition</option>
+                        <option value="PUNCTUALITY" th:selected="${feedback.category == 'PUNCTUALITY'}">Punctuality</option>
+                        <option value="STAFF" th:selected="${feedback.category == 'STAFF'}">Staff Behavior</option>
+                        <option value="OVERALL" th:selected="${feedback.category == 'OVERALL'}">Overall Experience</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Service Type:</td>
+                <td>
+                    <select name="serviceType" required>
+                        <option value="">Select Service Type</option>
+                        <option value="REGULAR" th:selected="${feedback.serviceType == 'REGULAR'}">Regular Service</option>
+                        <option value="EXPRESS" th:selected="${feedback.serviceType == 'EXPRESS'}">Express Service</option>
+                        <option value="LUXURY" th:selected="${feedback.serviceType == 'LUXURY'}">Luxury Service</option>
+                        <option value="NIGHT" th:selected="${feedback.serviceType == 'NIGHT'}">Night Service</option>
+                        <option value="INTERCITY" th:selected="${feedback.serviceType == 'INTERCITY'}">Intercity Service</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Message:</td>
+                <td><textarea name="message" rows="5" cols="50" required th:text="${feedback.message}"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Feedback"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <p><a href="/passenger/feedbacks">Back to Feedbacks</a></p>
+</body>
+</html>
